@@ -1,5 +1,5 @@
 {
-  "name": "vdom-test-app",
+  "name": "minimalist-vdom-experiments",
   "version": "0.0.1",
   "scripts": {
     "build": "bin/build.js"
