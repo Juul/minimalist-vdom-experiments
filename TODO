@@ -1,0 +1,40 @@
+
+https://github.com/developit/preact/wiki/Differences-to-React
+
+# Investigate
+
+Read this: https://facebook.github.io/react/docs/lifting-state-up.html
+
+How does react handle component scope e.g. for refs?
+
+
+
+Base preact has no string refs. E.g. <input type="text" ref="name" /> but it is deprecated in React anyway. They are available through `preact-compat`.
+
+
+What's the preact API for .mount() and .unmount() ? We need to handle that too.
+
+What about events? Will `onclick={this.func}` work like it does in preact?
+
+# Main
+
+Write our own h() function.
+
+It should be similar to preact's but output the same kind of stuff as 'virtual-dom/h' so we can use that toolchain.
+
+The only difference should be that if it has a custom name then it should not call that function, simply save it.
+
+Then when the patch if applied to the actual DOM (the render) we need a custom hook to instantiate the component and handle mount, unmount, etc:
+
+* componentWillMount 	before the component gets mounted to the DOM
+* componentDidMount 	after the component gets mounted to the DOM
+* componentWillUnmount 	prior to removal from the DOM
+* componentWillReceiveProps 	before new props get accepted
+* shouldComponentUpdate 	before render(). Return false to skip render
+* componentWillUpdate 	before render()
+* componentDidUpdate 	after render()
+
+
+
+
+
